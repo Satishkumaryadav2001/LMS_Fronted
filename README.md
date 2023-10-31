@@ -42,5 +42,11 @@ npm install -D tailwindcss
 
   @tailwind base;
   @tailwind components;
- @tailwind utilities;
+  @tailwind utilities;
+
+
+### Adding pliging and dependencies
+
+    npm install @reduxjs/toolkit react-redux react-router-dom react-icon react-chartjs-2 chart.js daisyui axios react-hot-toast @tailwindcss/line-clamp
+
 
