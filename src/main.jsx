@@ -1,10 +1,6 @@
-
-//Component import
-import { Toaster } from 'react-hot-toast';
 import App from './App.jsx'
-//CSS imports
 import './index.css'
-//Library import
+import { Toaster } from 'react-hot-toast';
 import ReactDOM from 'react-dom/client'
 import {BrowserRouter} from 'react-router-dom';
 
