@@ -27,7 +27,7 @@ cd LMS_Fronted
 
 1. Install tailwind css
 
-npm install -D tailwindcss
+npm install -D tailwindcss postcss autoprefixer
 
 2 Create Tailwind config file
 
@@ -35,6 +35,7 @@ npm install -D tailwindcss
 
 3 Add file extension to tailwind config file in the contents property
 
+    "./index.html",
      ./src/**/*.{html,js,jsx,ts,tsx}
 
 
@@ -47,7 +48,7 @@ npm install -D tailwindcss
 
 ### Adding pliging and dependencies
 
-    npm install @reduxjs/toolkit react-redux react-router-dom react-icon react-chartjs-2 chart.js daisyui axios react-hot-toast @tailwindcss/line-clamp
+    npm install @reduxjs/toolkit react-redux react-router-dom react-icons react-chartjs-2 chart.js daisyui axios react-hot-toast @tailwindcss/line-clamp
 
 ### Configure auto import sort esline
 
