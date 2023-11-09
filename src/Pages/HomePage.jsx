@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import HomeLayout from "../Layouts/HomeLayout";
-import HomePageImage from "../assets/Image/lms.jpg";
+import HomePageImage from "../assets/Image/Homepage-3.jpg";
 
 import HomePageVideo from "../assets/Video/LMS_HomePage.mp4";
 
@@ -13,7 +13,7 @@ function HomePage(){
                        <h1 className="text-5xl front-semibold">
                         Find out Best
                         <span className="text-yellow-500 font-bold">
-                            Online Courses
+                                    Online Courses
                         </span>
                        </h1>
                        <p className="text-xl text-gray-200">
@@ -33,9 +33,9 @@ function HomePage(){
                        </div>
                    </div>
                    <div className="w-1/2 flex items-center justify-center">
-                        {/* <img alt="Home pageimage " src={HomePageImage} /> */}
-                        <br></br>
-                        <video src={HomePageVideo} autoPlay controls height="1000px" width="1000px" loop/>
+                        <img alt="Home pageimage " src={HomePageImage} />
+                        
+                        {/* <video src={HomePageVideo} autoPlay controls height="1000px" width="1000px" loop/> */}
                    </div>
             </div>
         </HomeLayout>
