@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HomeLayout from "../Layouts/HomeLayout";
 import { BsPersonCircle } from "react-icons/bs";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-hot-toast';
 import { createAccount } from "../Redux/Slices/AuthSlice";
@@ -31,11 +31,11 @@ function Signup(){
     function getImage(event){
         event.preventDefault();
         //getting the image
-       const uploadedImage=event.target.file[0];
+       const uploadedImage=event.target.files[0];
 
        if(uploadedImage){
         setSignupData({
-            signupData,
+            ...signupData,
             avatar:uploadedImage
         });
         const fileReader= new FileReader();
@@ -50,7 +50,7 @@ function Signup(){
 
    async function createNewAccount(event){
         event.preventDefault();
-       if(!signupData.email || !signupData.password || signupData.fullName || signupData.avatar){
+       if(!signupData.email || !signupData.password || !signupData.fullName || !signupData.avatar){
         toast.error("Please fill all the deaitls");
         return;
        }
