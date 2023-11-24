@@ -5,8 +5,8 @@ import axiosintance from "../../Helpers/axiosintance";
 const initialState={
     isLoggedIn:localStorage.getItem('isLoggedIn') || false,
     role:localStorage.getItem("role") || "",
-    //data:JSON.parse(localStorage.getItem('data')) ||{}//This code use Backend And Fronted Working Successfullly
-    data:localStorage.getItem('data') ||{}
+    // data:localStorage.getItem('data') != undefined ? JSON.parse(localStorage.getItem('data')) :{}  this code write some issue
+    data:localStorage.getItem('data') ||{}//below code run this code clean
 };
 export const createAccount=createAsyncThunk("/auth/signup",async(data)=>{
     try {
@@ -14,13 +14,13 @@ export const createAccount=createAsyncThunk("/auth/signup",async(data)=>{
         toast.promise(res,{
             loading:"Wait ! creating your account",
             success:(data) => {
-                return data ?.data?.messsage;
+                return data ?.data?.message;
             },
             error:"Failed to create account"
         });
         return(await res).data;
     } catch (error) {
-        toast.error(error ?.response ?.data?.messsage);
+        toast.error(error ?.response ?.data?.message);
     }
 })
 
@@ -30,28 +30,56 @@ export const login=createAsyncThunk("/auth/login",async(data)=>{
         toast.promise(res,{
             loading:"Wait ! authentication in progress...",
             success:(data) => {
-                return data ?.data?.messsage;
+                return data ?.data?.message;
             },
             error:"Failed to log in"
         });
         return(await res).data;
     } catch (error) {
-        toast.error(error ?.response ?.data?.messsage);
+        toast.error(error ?.response ?.data?.message);
     }
 })
+
 export const logout = createAsyncThunk("/auth/logout",async () => {
     try {
         const res=axiosintance.post("user/logout");
         toast.promise(res,{
             loading:"Wait ! Logout in progress...",
             success:(data) => {
-                return data ?.data?.messsage;
+                return data ?.data?.message;
             },
             error:"Failed to log out"
         });
         return(await res).data;
     } catch (error) {
-        toast.error(error?.response?.messsage);
+        toast.error(error?.response?.message);
+    }
+})
+
+export const updateProfile = createAsyncThunk("/user/update/profile",async(data)=>{
+    try {
+        const res=axiosintance.put(`user/update/${data[0]}`,data[1]);
+        toast.promise(res,{
+            loading:"Wait ! profile update in progress...",
+            success:(data) => {
+                return data ?.data?.message;
+            },
+            error:"Failed to update profile"
+        });
+        return(await res).data;
+    } catch (error) {
+        toast.error(error ?.response ?.data?.message);
+    }
+})
+
+
+export const getUserData = createAsyncThunk("/user/details",async()=>{
+    try {
+        const res=axiosintance.get("user/me");
+    
+        return(await res).data;
+    } catch (error) {
+        toast.error(error ?.message);
     }
 })
 const authSlice=createSlice({
@@ -74,6 +102,15 @@ const authSlice=createSlice({
             state.data={};
             state.isLoggedIn=false;
             state.role="";
+        })
+        .addCase(getUserData.fulfilled,(state,action) =>{
+            if(!action?.payload?.user) return;
+            localStorage.setItem("data",JSON.stringify(action?.payload?.user));
+            localStorage.setItem("isLoggedIn",true);
+            localStorage.setItem("role",action?.payload?.user?.role);
+            state.isLoggedIn=true;
+            state.data=action?.payload?.user;
+            state.role=action?.payload?.user?.role;
         })
     }
 });
