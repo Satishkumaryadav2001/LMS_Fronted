@@ -102,10 +102,10 @@ return(
             onChange={handleInputChange}
             />
       </div>
-      <button type="submit" className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all esae-in-out duration-300 rounded-sm py-2 text-large cursor-pointer">
+      <button type="submit" className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all esae-in-out duration-300 rounded-sm py-2 text-lg cursor-pointer">
         Update Profile
       </button>
-      <Link to="/user/profile" className="">
+      <Link to="/user/profile" >
                   <p className="link text-accent cursor-pointer items-center justify-center w-full gap-2">
                     <AiOutlineArrowLeft/>  Go Back to Profile
                   </p>
