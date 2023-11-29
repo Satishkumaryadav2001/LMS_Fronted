@@ -111,7 +111,7 @@ const authSlice=createSlice({
             state.isLoggedIn=true;
             state.data=action?.payload?.user;
             state.role=action?.payload?.user?.role;
-        })
+        });
     }
 });
 
