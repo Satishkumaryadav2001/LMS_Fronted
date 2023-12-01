@@ -13,12 +13,12 @@ function AddLecture() {
     const navigate = useNavigate();
 
     const [userInput ,setUserInput] =useState({
-        id:courseDetails._id,
+        id:courseDetails?._id,
         lecture:undefined,
         title:"",
         description:"",
         videoSrc:""
-    })
+    });
 
     function handleInputChange(e){
         const{name , value} = e.target;
@@ -49,7 +49,7 @@ function AddLecture() {
         if(response?.payload?.success){
             navigate(-1);
             setUserInput({
-                id:courseDetails._id,
+                id:courseDetails?._id,
                 lecture:undefined,
                 title:"",
                 description:"",
@@ -76,7 +76,7 @@ function AddLecture() {
                         Add new lecture
                     </h1>
                 </header>
-                <from
+                <form
                    onSubmit={onFormSubmit} className="flex flex-col gap-3"
                 >
                  <input 
@@ -118,7 +118,7 @@ function AddLecture() {
                  <button type="submit" className="btn btn-primary py-1 font-semibold text-lg">
                     Add New Lecture
                  </button>
-                </from>
+                </form>
            </div>
 
         </div>
